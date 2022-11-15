@@ -3,12 +3,12 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+
 function CourseMarker() {
     const courses = useSelector((store) => store.courses);
     const coords = useSelector((store) => store.coords);
 
     const dispatch = useDispatch();
-    console.log('COURSES', courses);
 
     useEffect(() => {
 
@@ -22,23 +22,29 @@ function CourseMarker() {
 
     const findCourses = () => {
 
-        console.log('coords', coords);
-
         dispatch({
             type: 'FETCH_COURSES',
             payload: coords
         });
 
-    }
-
-    console.log('coords', coords);
-    console.log('courses', courses)
+    };
 
     return (
         <>
             {courses && courses.map(course => (
                 <Marker
-                    key={course.id} position={{ lat: parseFloat(course.latitude), lng: parseFloat(course.longitude) }}
+                    key={course.id}
+                    position={{
+                        lat: parseFloat(course.latitude),
+                        lng: parseFloat(course.longitude)
+                    }}
+                    icon={{
+                        url:"/images/noun-disc-golf-basket-301023-3B6BF9.svg",
+                    //   fillOpacity: 0.9,
+                      scale: 1,
+                    //   strokeColor: "gold",
+                      strokeWeight: 5,
+                    }}
                 />
             ))};
         </>

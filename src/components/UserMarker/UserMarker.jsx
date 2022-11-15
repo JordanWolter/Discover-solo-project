@@ -26,7 +26,7 @@ function UserMarker() {
 
         const crd = pos.coords;
 
-        console.log('CRD', crd)
+        console.log('CRD', crd.latitude)
 
         dispatch({
             type: 'FETCH_COORDS',
@@ -47,10 +47,20 @@ function UserMarker() {
         console.warn(`ERROR(${err.code}): ${err.message}`);
 
     };
-    
+
     return (
         <>
-            <Marker position={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) }} />
+            <Marker
+                position={{
+                    lat: parseFloat(coords.payload && coords.payload.lat),
+                    lng: parseFloat(coords.payload && coords.payload.lng)
+                }}
+                icon={{
+                    url: '/images/noun-frisbee-871431.svg',
+                    scale: 1,
+                    strokeWeight: 2,
+                }}
+            />
         </>
     );
 };

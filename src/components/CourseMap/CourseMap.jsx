@@ -16,9 +16,6 @@ function CourseMap() {
     const discs = useSelector((store) => store.discs);
     const weather = useSelector((store) => store.weather);
 
-
-    console.log('DISCS', coords);
-
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyCPVivR2fg0WCdypqe-fuaEoQXTTk38IwM"
     })
@@ -38,7 +35,7 @@ function CourseMap() {
         <>
             <GoogleMap zoom={11} center={{
                 lat: parseFloat(coords.payload && coords.payload.lat),
-                lng: parseFloat(coords.payload && coords.payload.lng)
+                lng: parseFloat(coords.payload && coords.payload.lng),
             }}
                 mapContainerClassName="map">
                 <CourseMarker />
