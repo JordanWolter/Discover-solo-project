@@ -19,6 +19,7 @@ import CoursePage from '../CoursePage/CoursePage';
 
 function CourseList() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const courses = useSelector((store) => store.courses);
     console.log('COURSES', courses);
 
@@ -42,9 +43,14 @@ function CourseList() {
     };
 
     const coursePage = (id) =>{
-        dispatchEvent({
-            type: 'FETCH_COURSE'
-        })
+
+        console.log('ID', id)
+
+        dispatch({
+            type: 'FETCH_COURSE_DETAILS',
+            payload: id
+        });
+
         history.push(`/coursePage/${id}`)
     }
 

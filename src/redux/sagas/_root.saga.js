@@ -4,7 +4,10 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import courseSaga from './course.saga';
 import coordsSaga from './coords.saga';
-import weatherSaga from './weather.saga'
+import weatherSaga from './weather.saga';
+import courseDetailsSaga from './courseDetails.saga';
+import courseImagesSaga from './courseImages.saga';
+import holeSaga from './hole.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +24,8 @@ export default function* rootSaga() {
     courseSaga(),
     coordsSaga(),
     weatherSaga(),
+    courseDetailsSaga(),
+    courseImagesSaga(),
+    holeSaga(),
   ]);
 }

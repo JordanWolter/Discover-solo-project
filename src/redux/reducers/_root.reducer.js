@@ -3,7 +3,10 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import courses from './courses.reducer';
 import coords from './coords.reducer';
-import weather from './weather.reducer'
+import weather from './weather.reducer';
+import courseDetails from './courseDetails.reducer';
+import courseImages from './courseImages.reducer';
+import holes from './holes.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +19,10 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   courses,
   coords,
-  weather
+  weather,
+  courseDetails,
+  courseImages,
+  holes,
 });
 
 export default rootReducer;

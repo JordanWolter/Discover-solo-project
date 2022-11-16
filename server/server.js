@@ -12,6 +12,8 @@ const userRouter = require('./routes/user.router');
 const courseRouter = require('./routes/course.router');
 const coursePageRouter = require('./routes/coursePage.router');
 const weatherRouter = require('./routes/weather.router');
+const courseImagesRouter = require('./routes/courseImages.router');
+const holesRouter = require('./routes/holes.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +31,8 @@ app.use('/api/user', userRouter);
 app.use('/api/course', courseRouter);
 app.use('/api/coursePage', coursePageRouter);
 app.use('/api/weather', weatherRouter);
+app.use('/api/courseImages', courseImagesRouter);
+app.use('/api/holes', holesRouter);
 
 // Serve static files
 app.use(express.static('build'));
