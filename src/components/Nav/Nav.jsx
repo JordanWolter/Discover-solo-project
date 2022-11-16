@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
+// import './Nav.css';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import MenuIcon from '@mui/icons-material/Menu';
+import Weather from '../Weather/Weather';
 
 function Nav() {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ function Nav() {
 
   return (
     <div className="nav">
+      <Weather />
       <Link to="/home">
         {/* possibly image logo */}
         <h2 className="nav-title">DISCover</h2>

@@ -10,6 +10,12 @@ function CourseMarker() {
 
     const dispatch = useDispatch();
 
+    if(!coords){
+        return(
+            <h1>Loading...</h1>
+        )
+    }
+
     useEffect(() => {
 
         if (!coords) {
@@ -18,7 +24,7 @@ function CourseMarker() {
             findCourses();
         }
 
-    }, []);
+    }, [coords]);
 
     const findCourses = () => {
 

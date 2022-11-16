@@ -7,11 +7,11 @@ function* coordsSaga(){
 
 function* fetchCoords(action){
 
-    //console.log('action.payload', action.payload.lat);
+    console.log('##################action.payload', action.payload);
 
     try {
         
-        yield put({ type: 'SET_COORDS', payload: action });
+        yield put({ type: 'SET_COORDS', payload: action.payload });
         
     } catch (error) {
         

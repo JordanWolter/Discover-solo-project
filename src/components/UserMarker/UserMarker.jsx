@@ -8,52 +8,18 @@ function UserMarker() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-
-        navigator.geolocation.getCurrentPosition(success, error, options);
-
-    }, []);
-
-    const options = {
-
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-
-    };
-
-    function success(pos) {
-
-        const crd = pos.coords;
-
-        console.log('CRD', crd.latitude)
-
-        dispatch({
-            type: 'FETCH_COORDS',
-            payload: {
-                lat: crd.latitude,
-                lng: crd.longitude
-            }
-        });
-
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-    };
-
-    function error(err) {
-
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-
-    };
+    if(!coords){
+        return(
+            <h1>Loading...</h1>
+        )
+    }
 
     return (
         <>
             <Marker
                 position={{
-                    lat: parseFloat(coords.payload && coords.payload.lat),
-                    lng: parseFloat(coords.payload && coords.payload.lng)
+                    lat: parseFloat(coords.lat),
+                    lng: parseFloat(coords.lng)
                 }}
                 icon={{
                     url: '/images/noun-frisbee-871431.svg',
@@ -63,6 +29,8 @@ function UserMarker() {
             />
         </>
     );
-};
+
+}
+    
 
 export default UserMarker;

@@ -1,4 +1,5 @@
 const coordsReducer = (state = {}, action) => {
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@', action.payload)
     switch (action.type) {
       case 'SET_COORDS':
         return action.payload;
