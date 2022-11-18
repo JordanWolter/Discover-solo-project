@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     // GET route code here
 
-    console.log('ID', req.params.id);
+    // console.log('ID', req.params.id);
 
     axios({
 

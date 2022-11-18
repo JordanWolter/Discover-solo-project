@@ -14,6 +14,7 @@ const coursePageRouter = require('./routes/coursePage.router');
 const weatherRouter = require('./routes/weather.router');
 const courseImagesRouter = require('./routes/courseImages.router');
 const holesRouter = require('./routes/holes.router');
+const gameIdRouter = require('./routes/gameId.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.use('/api/coursePage', coursePageRouter);
 app.use('/api/weather', weatherRouter);
 app.use('/api/courseImages', courseImagesRouter);
 app.use('/api/holes', holesRouter);
+app.use('/api/game', gameIdRouter);
 
 // Serve static files
 app.use(express.static('build'));

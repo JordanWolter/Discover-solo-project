@@ -1,5 +1,5 @@
 const courseDetailsReducer = (state = 0, action) => {
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@', action.payload)
+    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@', action.payload)
       switch (action.type) {
         case 'SET_COURSE_DETAILS':
           return action.payload;

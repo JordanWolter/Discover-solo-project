@@ -8,6 +8,8 @@ import weatherSaga from './weather.saga';
 import courseDetailsSaga from './courseDetails.saga';
 import courseImagesSaga from './courseImages.saga';
 import holeSaga from './hole.saga';
+import holeScore from './holeScore.saga';
+import gameIdSaga from './game.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +29,7 @@ export default function* rootSaga() {
     courseDetailsSaga(),
     courseImagesSaga(),
     holeSaga(),
+    holeScore(),
+    gameIdSaga(),
   ]);
 }

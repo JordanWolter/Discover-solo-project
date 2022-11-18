@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function Course (course) {
 
-    console.log('course', course)
+    // console.log('course', course)
 
     return(
         <>

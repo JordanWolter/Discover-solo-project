@@ -7,7 +7,7 @@ function* coordsSaga(){
 
 function* fetchCoords(action){
 
-    console.log('##################action.payload', action.payload);
+    // console.log('##################action.payload', action.payload);
 
     try {
         

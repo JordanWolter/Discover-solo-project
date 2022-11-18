@@ -12,12 +12,15 @@ import './coursePage.css'
 
 function CoursePage() {
     const dispatch = useDispatch();
+    const history = useHistory();
+    let [courseName, setCourseName] = useState('')
     const courses = useSelector((store) => store.courses);
     const id = useSelector((store) => store.courseDetails);
     const images = useSelector((store) => store.courseImages);
     const holes = useSelector((store) => store.holes);
+    const userId = useSelector((store) => store.user.id)
 
-    console.log('IMAGES', images)
+    console.log('IMAGES', courses)
 
     useEffect(() => {
 
@@ -35,6 +38,25 @@ function CoursePage() {
 
     const startRound = () => {
 
+        courses.map(course => {
+            if(course.course_id === id){
+            
+                setCourseName(courseName = course.name);
+            
+            }
+        })
+
+        dispatch({
+            type: 'FETCH_GAME_ID',
+            payload: {
+                user_id: userId,
+                course_id: id,
+                course_name: courseName
+            }
+        });
+
+        history.push(`/round/${id}`);
+
     }
 
 
@@ -43,7 +65,7 @@ function CoursePage() {
     return (
         <>
             {courses.map(course => {
-                console.log('course', course)
+                // console.log('course', course)
                 if (course.course_id === id) {
                     return (
                         <>
@@ -71,12 +93,8 @@ function CoursePage() {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-
-
-
                             <Button onClick={startRound}>Start Round</Button>
                         </>
-
                     )
                 }
             })}

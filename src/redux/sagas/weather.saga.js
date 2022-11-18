@@ -7,7 +7,7 @@ function* weatherSaga(){
 
 function* fetchWeather(action){
 
-    console.log('ACTIONONOONONONOONON', action)
+    // console.log('ACTIONONOONONONOONON', action)
 
     try {
         const weather = yield axios.get(`/api/weather/${action.payload.lat}/${action.payload.lng}`);

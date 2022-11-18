@@ -21,7 +21,7 @@ function CourseList() {
     const history = useHistory();
     const dispatch = useDispatch();
     const courses = useSelector((store) => store.courses);
-    console.log('COURSES', courses);
+    // console.log('COURSES', courses);
 
     const [state, setState] = React.useState({
         top: false,
@@ -44,7 +44,7 @@ function CourseList() {
 
     const coursePage = (id) =>{
 
-        console.log('ID', id)
+        // console.log('ID', id)
 
         dispatch({
             type: 'FETCH_COURSE_DETAILS',

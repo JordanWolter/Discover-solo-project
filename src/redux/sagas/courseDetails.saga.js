@@ -7,7 +7,7 @@ function* courseDetailsSaga(){
 
 function* fetchCourseDetails(action){
 
-    console.log('##################action.payload', action.payload);
+    // console.log('##################action.payload', action.payload);
 
     try {
         

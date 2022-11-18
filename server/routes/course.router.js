@@ -7,15 +7,12 @@ const router = express.Router();
 router.get('/:lat/:lng', (req, res) => {
     // GET route code here
 
-    console.log('lat', req.params.lat, 'lng', req.params.lng);
+    // console.log('lat', req.params.lat, 'lng', req.params.lng);
 
     //41.701992, -73.921895
     //chili
     //43.083944, -77.763394
 
-    //https://www.dgcr-api.com/?key=XXXXXXXXXXXXXXXXXX&mode=near_rad&lat=37.788022&lon=-122.399797&limit=5&rad=15&sig=YYYYYYYYYYYYY
-
-    //https://www.dgcr-api.com/?key=XXXXXXXXXXXXXXXXXX&mode=near_rad&lat=37.788022&lon=-122.399797&limit=5&rad=15&sig=YYYYYYYYYYYYY
     axios({
 
         method: 'GET',
@@ -32,7 +29,6 @@ router.get('/:lat/:lng', (req, res) => {
         }
 
     }).then((apiRes) => {
-        //console.log('API', apiRes.data);
 
         res.send(apiRes.data);
 

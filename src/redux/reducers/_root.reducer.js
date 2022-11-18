@@ -7,6 +7,7 @@ import weather from './weather.reducer';
 import courseDetails from './courseDetails.reducer';
 import courseImages from './courseImages.reducer';
 import holes from './holes.reducer';
+import holeScore from './holeScore.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   courseDetails,
   courseImages,
   holes,
+  holeScore,
 });
 
 export default rootReducer;
