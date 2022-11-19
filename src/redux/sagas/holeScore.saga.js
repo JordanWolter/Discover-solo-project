@@ -13,7 +13,7 @@ function* addScore(action){
 
     try {
         
-        yield put({ type: 'SET_SCORE', payload: action.payload });
+        yield axios.post('SET_SCORE', payload: action.payload );
         
     } catch (error) {
         
@@ -22,7 +22,9 @@ function* addScore(action){
 
 function* backHole(){
     try {
+
         yield put({ type: 'BACK_SCORE'});
+
     } catch (error){
 
     }
