@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Round from '../Round/Round';
 import CoursePage from '../CoursePage/CoursePage';
+import History from '../History/History';
 
 import './App.css';
 
@@ -118,6 +119,9 @@ function App() {
 
           <Route exact path={`/round/:id`}>
             <Round />
+          </Route>
+          <Route exact path={`/history`}>
+            <History />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

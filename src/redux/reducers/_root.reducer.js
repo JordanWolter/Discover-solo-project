@@ -8,6 +8,9 @@ import courseDetails from './courseDetails.reducer';
 import courseImages from './courseImages.reducer';
 import holes from './holes.reducer';
 import holeScore from './holeScore.reducer';
+import gameId from './gameId.reducer';
+import roundHistory from './history.reducer';
+import historyId from'./historyId.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +28,9 @@ const rootReducer = combineReducers({
   courseImages,
   holes,
   holeScore,
+  gameId,
+  roundHistory,
+  historyId,
 });
 
 export default rootReducer;

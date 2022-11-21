@@ -2,18 +2,29 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* holeScore(){
+    yield takeLatest('FETCH_SCORE', fetchScore)
     yield takeLatest('ADD_SCORE', addScore);
     yield takeLatest('BACK_HOLE', backHole);
     yield takeLatest('CLEAR_HOLE', clearHole);
 };
 
-function* addScore(action){
+function* fetchScore(action){
+    try {
+        const response = yield axios.get(`/api/score/${action.payload}`);
 
-    // console.log('##################action.payload', action.payload);
+        yield put({ type: 'SET_SCORE_LIST', payload: response.data });
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+function* addScore(action){
 
     try {
         
-        yield axios.post('SET_SCORE', payload: action.payload );
+        yield axios.post('/api/score', action.payload );
+        yield put({ type: 'FETCH_SCORE', payload: action.payload.roundId})
         
     } catch (error) {
         

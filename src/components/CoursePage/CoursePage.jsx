@@ -46,12 +46,48 @@ function CoursePage() {
             }
         })
 
+        
+        const month = new Date().getMonth() + 1
+        const day = new Date().getDate()
+        const year = new Date().getFullYear()
+        const hour = new Date().getHours()
+        const minute = new Date().getMinutes()
+        const second = new Date().getSeconds()
+        const timeUni = new Date().getTime()
+
+        const yearString = year.toString()
+        const monthString = month.toString()
+        const daySting = day.toString()
+        const hourString = hour.toString()
+        const minuteString = minute.toString()
+        const secondString = second.toString()
+        // const uniTime = 
+
+        // second < 10 && '0' + secondString
+
+        console.log('yearString', yearString)
+        console.log('monthString', monthString)
+        console.log('dayString', daySting)
+        console.log('hourString', hourString)
+        console.log('minuteString', minuteString)
+        console.log('secondString', secondString)
+
+
+
+        const date = monthString + '-' + daySting + '-' + yearString
+        // const time = hourString + ':' + minuteString + ':' + secondString
+        const time = timeUni
+
+        console.log('DATE', date, 'TIME', time)
+
         dispatch({
             type: 'FETCH_GAME_ID',
             payload: {
                 user_id: userId,
                 course_id: id,
-                course_name: courseName
+                course_name: courseName,
+                date: date,
+                time: time
             }
         });
 
