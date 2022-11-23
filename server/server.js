@@ -17,7 +17,9 @@ const holesRouter = require('./routes/holes.router');
 const gameIdRouter = require('./routes/gameId.router');
 const scoreRouter = require('./routes/score.router');
 const historyRouter = require('./routes/history.router');
-const historyIdRouter = require('./routes/historyId.router')
+const scoreHistoryRouter = require('./routes/scoreHistory.router');
+const discRouter = require('./routes/disc.router');
+const bagRouter = require('./routes/bag.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -40,7 +42,9 @@ app.use('/api/holes', holesRouter);
 app.use('/api/game', gameIdRouter);
 app.use('/api/score', scoreRouter);
 app.use('/api/history', historyRouter);
-app.use('/api/historyId', historyIdRouter);
+app.use('/api/scoreHistory', scoreHistoryRouter);
+app.use('/api/disc', discRouter);
+app.use('/api/bag', bagRouter)
 
 // Serve static files
 app.use(express.static('build'));

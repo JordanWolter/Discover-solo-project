@@ -1,7 +1,7 @@
 const historyIdReducer = (state = [], action) => {
     
     switch (action.type) {
-        case 'SET_HISTORY_ID':
+        case 'SET_SCORE_HISTORY':
             return action.payload;
         default:
             return state;

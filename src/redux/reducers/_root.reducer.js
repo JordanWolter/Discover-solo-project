@@ -10,7 +10,8 @@ import holes from './holes.reducer';
 import holeScore from './holeScore.reducer';
 import gameId from './gameId.reducer';
 import roundHistory from './history.reducer';
-import historyId from'./historyId.reducer';
+import scoreHistory from'./scoreHistory.reducer';
+import disc from './disc.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   holeScore,
   gameId,
   roundHistory,
-  historyId,
+  scoreHistory,
+  disc,
 });
 
 export default rootReducer;

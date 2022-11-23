@@ -11,7 +11,9 @@ import holeSaga from './hole.saga';
 import holeScore from './holeScore.saga';
 import gameIdSaga from './game.saga';
 import roundHistorySaga from './roundHistory.saga';
-import historyIdSaga from './historyId.saga';
+import scoreHistorySaga from './scoreHistory.saga';
+import discSaga from './disc.saga';
+import bagSaga from './bag.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -34,6 +36,8 @@ export default function* rootSaga() {
     holeScore(),
     gameIdSaga(),
     roundHistorySaga(),
-    historyIdSaga(),
+    scoreHistorySaga(),
+    discSaga(),
+    bagSaga(),
   ]);
 }
