@@ -39,7 +39,7 @@ function Weather() {
                 </Box>
             </Stack>
             <Stack spacing={.01}>
-                <p id='temp'>{weather.current && weather.current.temp_f}°</p>
+                <p id='temp'>{weather.current && parseInt(weather.current.temp_f)}°</p>
                 <p id='mph'>mph</p>
             </Stack>
         </Grid2>

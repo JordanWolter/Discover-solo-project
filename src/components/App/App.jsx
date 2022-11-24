@@ -24,6 +24,7 @@ import CoursePage from '../CoursePage/CoursePage';
 import History from '../History/History';
 import Profile from '../Profile/Profile';
 import Disc from '../Disc/Disc';
+import EditDisc from '../EditDisc/EditDisc';
 
 import './App.css';
 
@@ -126,10 +127,13 @@ function App() {
             <History />
           </Route>
           <Route exact path={`/profile`}>
-            <Profile/>
+            <Profile />
           </Route>
           <Route exact path={`/disc`}>
-            <Disc/>
+            <Disc />
+          </Route>
+          <Route exact path={'/editDisc/:id'}>
+            <EditDisc />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

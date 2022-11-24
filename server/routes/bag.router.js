@@ -2,37 +2,42 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// router.get('/:user_id/:course_id/:date/:time', (req, res) => {
-//     // GET route code here
+router.get('/:id', (req, res) => {
+    // GET route code here
 
-//     const queryText = `SELECT "id" 
-//     FROM "round"
-//     WHERE "user_id" = $1
-//     AND "course_id" = $2
-//     AND "date" = $3
-//     AND "time" = $4;`;
+    console.log('>>>>>>>>>>>>>>>>>>>>>ID', req.params.id)
 
-//     const queryParams = [req.params.user_id, req.params.course_id, req.params.date, req.params.time];
+    const queryText = `SELECT * 
+    FROM "bag"
+    WHERE "user_id" = $1;`;
 
-//     pool.query(queryText, queryParams)
+    const queryParams = [req.params.id];
 
-//         .then((result) => {
+    pool.query(queryText, queryParams)
 
-//             res.send(result.rows[0])
+        .then((result) => {
 
-//         }).catch((error) => {
-//             console.log('User registration failed: ', error);
-//             res.sendStatus(500);
-//         })
-// });
+            res.send(result.rows)
+
+        }).catch((error) => {
+            console.log('User registration failed: ', error);
+            res.sendStatus(500);
+        })
+});
 
 router.post('/', (req, res) => {
     // POST route code here
 
-    const queryText = `INSERT INTO "bag"(data_id, brand, name, flight_type, speed, fade, glide, turn, flight_path)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
+    const queryText = `INSERT INTO "bag"(user_id, data_id, 
+        brand, name, flight_type, 
+        speed, fade, glide, turn, flight_path)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
 
-    const queryParams = [req.body.dataId, req.body.brand, req.body.name, req.body.flightType, req.body.speed, req.body.fade, req.body.glide, req.body.turn, req.body.flightPath];
+    const queryParams = [req.body.user, req.body.disc.dataId,
+    req.body.disc.brand, req.body.disc.name,
+    req.body.disc.flightType, req.body.disc.speed,
+    req.body.disc.fade, req.body.disc.glide,
+    req.body.disc.turn, req.body.disc.flightPath];
 
     pool.query(queryText, queryParams)
 
@@ -47,5 +52,32 @@ router.post('/', (req, res) => {
 
         })
 });
+
+router.delete('/:id', (req, res) => {
+    // GET route code here
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>ID', req.params.id)
+
+    const queryText = `DELETE
+    FROM "bag"
+    WHERE "id" = $1;`;
+
+    const queryParams = [req.params.id];
+
+    pool.query(queryText, queryParams)
+
+        .then((result) => {
+
+            res.send(result.rows)
+
+        }).catch((error) => {
+            console.log('User registration failed: ', error);
+            res.sendStatus(500);
+        })
+});
+
+
+
+
 
 module.exports = router;

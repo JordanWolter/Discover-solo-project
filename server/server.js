@@ -20,6 +20,8 @@ const historyRouter = require('./routes/history.router');
 const scoreHistoryRouter = require('./routes/scoreHistory.router');
 const discRouter = require('./routes/disc.router');
 const bagRouter = require('./routes/bag.router');
+const editBagRouter = require('./routes/editBag.router')
+// const userDiscRouter = require('./routes/userDisc.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -44,7 +46,9 @@ app.use('/api/score', scoreRouter);
 app.use('/api/history', historyRouter);
 app.use('/api/scoreHistory', scoreHistoryRouter);
 app.use('/api/disc', discRouter);
-app.use('/api/bag', bagRouter)
+app.use('/api/bag', bagRouter);
+app.use('/api/editBag', editBagRouter);
+// app.use('/api/userDisc', userDiscRouter);
 
 // Serve static files
 app.use(express.static('build'));

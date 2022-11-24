@@ -11,10 +11,27 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 function Profile() {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector(store => store.user)
-    console.log(user)
+    const bag = useSelector((store) => store.bag)
+
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_USER_DISC',
+            payload: user.id
+        })
+    }, [])
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -22,82 +39,77 @@ function Profile() {
         setExpanded(isExpanded ? panel : false);
     };
 
+    const deleteDisc = (id) => {
+
+        dispatch({
+            type: 'DELETE_DISC',
+            payload: id
+        })
+        dispatch({
+            type: 'FETCH_USER_DISC',
+            payload: user.id
+        })
+    }
+
+    const editDisc = (disc) => {
+        history.push(`/editDisc/${disc.id}`)
+    }
+
     return (
         <>
             <h1>{user.username}</h1>
             <h2>favorite courses</h2>
             <h3>round history</h3>
             <div>
-            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        disc 1 name
-                    </Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>disc 1 type</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                       this is going to be disc stats
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel2bh-content"
-                    id="panel2bh-header"
-                >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>disc 2 name</Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>
-                        disc 2 type
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        disc 2 stats
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel3bh-content"
-                    id="panel3bh-header"
-                >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                        Advanced settings
-                    </Typography>
-                    <Typography sx={{ color: 'text.secondary' }}>
-                        Filtering has been entirely disabled for whole web server
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-                        amet egestas eros, vitae egestas augue. Duis vel est augue.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel4bh-content"
-                    id="panel4bh-header"
-                >
-                    <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
-                        amet egestas eros, vitae egestas augue. Duis vel est augue.
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-        </div>
+                {bag.map(disc => (
+                    <>
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+
+                                <Typography>{disc.brand} {disc.name}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {/* <Typography> */}
+                                <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 550 }} aria-label="simple table">
+                                        <TableHead>
+                                            <TableRow key={disc.dataId}>
+                                                <Button sx={{ ml: 5, mt: 2 }} onClick={() => deleteDisc(disc.id)}>delete</Button>
+                                                <Button sx={{ ml: 5, mt: 2 }} onClick={() => editDisc(disc)}>edit</Button>
+                                                <TableCell align="left">Type</TableCell>
+                                                <TableCell align="left">Speed</TableCell>
+                                                <TableCell align="left">Glide</TableCell>
+                                                <TableCell align="left">Fade</TableCell>
+                                                <TableCell align="left">Turn</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            <TableRow
+                                                key={disc.dataId}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell><img src={disc.flight_path} /></TableCell>
+                                                <TableCell align="left">{disc.flight_type}</TableCell>
+                                                <TableCell align="left">{disc.speed}</TableCell>
+                                                <TableCell align="left">{disc.glide}</TableCell>
+                                                <TableCell align="left">{disc.fade}</TableCell>
+                                                <TableCell align="left">{disc.turn}</TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                {/* </Typography> */}
+                            </AccordionDetails>
+                        </Accordion>
+
+                    </>
+
+                ))}
+            </div>
 
         </>
     )

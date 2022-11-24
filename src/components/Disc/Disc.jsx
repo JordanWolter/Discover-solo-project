@@ -28,9 +28,11 @@ function Disc() {
 
     const dispatch = useDispatch();
     const discResults = useSelector(store => store.disc)
+    const id = useSelector(store => store.user.id)
 
-    const [discType, setDiscType] = React.useState('');
+    const [discType, setDiscType] = useState('');
     const [discBrand, setDiscBrand] = useState([]);
+    const [userDisc, setUserDisc] = useState({});
     const handleBrand = (event, value) => setDiscBrand(value);
 
     const handleType = (event) => {
@@ -50,9 +52,17 @@ function Disc() {
     }
 
     const addToBag = (disc) => {
+
+        setUserDisc({
+            disc: disc,
+            user: id
+        })
+
+        console.log('USERDISC', userDisc)
+
         dispatch({
             type: 'ADD_TO_BAG',
-            payload: disc
+            payload: userDisc
         })
     }
 

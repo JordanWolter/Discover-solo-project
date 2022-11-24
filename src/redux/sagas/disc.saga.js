@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* discSaga(){
     yield takeLatest('FETCH_DISC_TYPE', fetchDiscType);
+   
 };
 
 function* fetchDiscType(action){
@@ -20,6 +21,8 @@ function* fetchDiscType(action){
         
     }
 }
+
+
 
 
 
