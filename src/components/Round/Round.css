@@ -1,0 +1,27 @@
+.movies {
+    display : flex;
+    flex-wrap: wrap;
+}
+
+.holeInfo{
+    margin: auto;
+    padding: 3px;
+    margin-top: 4px;
+    
+    /* margin-top: -20px; */
+}
+
+#scoreTrack{
+    margin-top: -13px;
+}
+
+#minus{
+    margin-top: 83px;
+    margin-left: 2px;
+ 
+}
+
+#plus{
+    margin-top: 80px;
+    margin-left: 2px;
+}

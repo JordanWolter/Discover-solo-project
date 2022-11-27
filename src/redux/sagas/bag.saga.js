@@ -68,8 +68,6 @@ function* deleteDisc(action){
 
 function* fetchEditDisc(action){
 
-    console.log('action.payload!!!!!!!!!!!!!', action.payload);
-
     try {
 
         const response = yield axios.get(`/api/editBag/${action.payload}`);

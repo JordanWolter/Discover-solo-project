@@ -5,8 +5,6 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
     // GET route code here
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>ID', req.params.id)
-
     const queryText = `SELECT * 
     FROM "bag"
     WHERE "user_id" = $1;`;
@@ -56,8 +54,6 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     // GET route code here
 
-    console.log('>>>>>>>>>>>>>>>>>>>>>ID', req.params.id)
-
     const queryText = `DELETE
     FROM "bag"
     WHERE "id" = $1;`;
@@ -71,8 +67,10 @@ router.delete('/:id', (req, res) => {
             res.send(result.rows)
 
         }).catch((error) => {
+
             console.log('User registration failed: ', error);
             res.sendStatus(500);
+            
         })
 });
 

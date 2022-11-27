@@ -8,7 +8,9 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import AirIcon from '@mui/icons-material/Air';
-import './Weather.css'
+import './Weather.css';
+import { PrimaryMainTheme } from '../PrimaryMainTheme/PrimaryMainTheme';
+import { ThemeProvider } from '@mui/system';
 
 function Weather() {
     const dispatch = useDispatch();
@@ -28,21 +30,24 @@ function Weather() {
     }, [coords])
 
     return (
-        <Grid2 container>
-            <Stack>
-                <img id='weatherImg' src={weather.current && weather.current.condition.icon} />
-                <Box>
-                    <Stack direction='row' spacing={.5}>
-                        <AirIcon id='weatherIcon' />
-                        <p id='speed'>{weather.current && weather.current.wind_mph}</p>
-                    </Stack>
-                </Box>
-            </Stack>
-            <Stack spacing={.01}>
-                <p id='temp'>{weather.current && parseInt(weather.current.temp_f)}°</p>
-                <p id='mph'>mph</p>
-            </Stack>
-        </Grid2>
+        <ThemeProvider theme={PrimaryMainTheme}>
+            <Grid2 sx={{ backgroundColor: 'primary.main' }} container>
+                <Stack>
+                    <img id='weatherImg' src={weather.current && weather.current.condition.icon} />
+                    <Box>
+                        <Stack direction='row' spacing={.5}>
+                            <AirIcon id='weatherIcon' />
+                            <p id='speed'>{weather.current && weather.current.wind_mph}</p>
+                        </Stack>
+                    </Box>
+                </Stack>
+                <Stack spacing={.01}>
+                    <p id='temp'>{weather.current && parseInt(weather.current.temp_f)}°</p>
+                    <p id='mph'>mph</p>
+                </Stack>
+            </Grid2>
+        </ThemeProvider>
+
     )
 }
 

@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+
 function* holeScore(){
     yield takeLatest('FETCH_SCORE', fetchScore)
     yield takeLatest('ADD_SCORE', addScore);
@@ -31,15 +32,21 @@ function* addScore(action){
     }
 }
 
-function* backHole(){
+function* backHole(action){
     try {
 
-        yield put({ type: 'BACK_SCORE'});
+        yield axios.delete(`/api/score/${action.payload.roundId}/${action.payload.holeNum}`);
+
+
+        // yield put({ type: 'SET_USER_DISC', payload: response.data });
+
+        yield put({ type: 'BACK_SCORE',});
 
     } catch (error){
 
     }
 }
+
 
 function* clearHole(){
     try{

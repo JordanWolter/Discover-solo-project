@@ -12,10 +12,14 @@ import { useSelector } from 'react-redux';
 function Footer() {
   return (
     <div>
-      <footer>&copy; Prime Digital Academy</footer>
-      <Link className="navLink" to="/about">
-        About
-      </Link>
+      <footer>&copy; Jordan Wolter
+
+        <Link id='about' className="navLink" to="/about">
+          About
+        </Link>
+
+
+      </footer>
     </div>
   );
 }

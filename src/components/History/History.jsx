@@ -40,15 +40,10 @@ function History() {
             payload: userId
         })
 
-        calcHandicap()
+        
 
     }, [userId]);
 
-    const calcHandicap = () => {
-        for(let i = 0; i < 20; i++){
-            console.log(i)
-        }
-    }
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -58,11 +53,27 @@ function History() {
         color: theme.palette.text.secondary,
     }));
 
+    const deleteRound = (id) => {
+
+        dispatch({
+            type: 'DELETE_ROUND',
+            payload: id
+        })
+        dispatch({
+            type: 'FETCH_USER_ROUND',
+            payload: userId
+        })
+    }
+
+    const editRound = (round) => {
+        history.push(`/editRound/${round.id}`)
+    }
+
 
     return (
         <>
         <Stack direction={'row'} spacing={4}>
-        <Button sx={{margin: 2, padding: 2}} onClick={calcHandicap}>View Map</Button>
+        <Button sx={{margin: 2, padding: 2}}>View Map</Button>
         <Button sx={{margin: 2, padding: 2}}>View Profile</Button>
         </Stack>
         
@@ -83,11 +94,10 @@ function History() {
                                 <Table sx={{ minWidth: 450 }} aria-label="simple table">
                                     <TableHead>
                                         <TableRow key={round.id}>
-                                           
                                             <TableCell align="left">Total Score</TableCell>
                                             <TableCell align="left">Best Score</TableCell>
                                             <TableCell align="left">Worst Score</TableCell>
-                                            <Button sx={{ mt: 1}} /*onClick={() => addToBag(disc)}*/>Delete</Button>
+                                            <Button sx={{ mt: 1 }} onClick={() => deleteRound(round.id)}>delete</Button>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -98,7 +108,7 @@ function History() {
                                             <TableCell align="left">Score Sum</TableCell>
                                             <TableCell align="left">Score Min</TableCell>
                                             <TableCell align="left">Score Max</TableCell>
-                                            <Button sx={{ mt: 1}} /*onClick={() => addToBag(disc)}*/>Edit</Button>
+                                            <Button sx={{ mt: 1 }} onClick={() => editRound(round)}>edit</Button>
                                         </TableRow>
                                     </TableBody>
                                 </Table>

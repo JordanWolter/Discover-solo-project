@@ -1,4 +1,12 @@
 .coursePhoto{
-    width: 100%;
-    height: 400px;
+    /* width: 90%; */
+    height: 350px;
+    /* margin-left: 19px; */
+    /* margin-right: auto; */
+    border-radius: 8px;
+    /* margin-top: 10px; */
+}
+
+#title{
+    margin-top: -2px;
 }

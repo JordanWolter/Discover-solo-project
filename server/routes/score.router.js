@@ -52,4 +52,29 @@ router.post('/', (req, res) => {
         });
 });
 
+router.delete('/:id/:hole', (req, res) => {
+    // GET route code here
+
+    console.log('>>>>>>>>>>>>>>>>>>>>>ID', req.params.id, req.params.hole)
+
+    const queryText = `DELETE
+    FROM "score"
+    WHERE "round_id" = $1 AND "hole_num" = $2;`;
+
+    const queryParams = [req.params.id, req.params.hole];
+
+    pool.query(queryText, queryParams)
+
+        .then((result) => {
+
+            res.send(result.rows)
+
+        }).catch((error) => {
+            console.log('User registration failed: ', error);
+            res.sendStatus(500);
+        })
+});
+
+
+
 module.exports = router;

@@ -31,7 +31,7 @@ function Profile() {
             type: 'FETCH_USER_DISC',
             payload: user.id
         })
-    }, [])
+    }, [bag])
 
     const [expanded, setExpanded] = React.useState(false);
 

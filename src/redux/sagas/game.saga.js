@@ -14,8 +14,6 @@ function* fetchGameId(action){
 
         const response = yield axios.get(`/api/game/${action.payload.user_id}/${action.payload.course_id}/${action.payload.date}/${action.payload.time}`);
 
-        console.log('REEEEEEEEESSSSPPPPMOOOOOONNNNNSSSSSSSSS', response.data);
-
         yield put({ type: 'SET_GAME_ID', payload: response.data });
         
     } catch (error) {

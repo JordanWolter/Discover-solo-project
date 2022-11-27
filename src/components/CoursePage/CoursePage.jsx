@@ -8,6 +8,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ThemeProvider } from '@mui/system';
+import { PrimaryMainTheme } from '../PrimaryMainTheme/PrimaryMainTheme';
 import './coursePage.css'
 
 function CoursePage() {
@@ -39,14 +41,14 @@ function CoursePage() {
     const startRound = () => {
 
         courses.map(course => {
-            if(course.course_id === id){
-            
+            if (course.course_id === id) {
+
                 setCourseName(courseName = course.name);
-            
+
             }
         })
 
-        
+
         const month = new Date().getMonth() + 1
         const day = new Date().getDate()
         const year = new Date().getFullYear()
@@ -96,44 +98,77 @@ function CoursePage() {
     }
 
 
-
+    holes.shift()
 
     return (
         <>
-            {courses.map(course => {
-                // console.log('course', course)
-                if (course.course_id === id) {
-                    return (
-                        <>
-                            <img className='coursePhoto' src={images.course_photo_url_medium} />
-                            <h1>{course.name}</h1>
-                            <h2>{course.street_addr === "" ? 'No address availible' : course.street_addr}</h2>
-                            <h2>{course.city}, {course.state}</h2>
-                            <h2>{course.paytoplay === "0" ? 'Free to play' : 'Pay to play'}</h2>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>{course.holes} Holes</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {holes.map(hole => (
-                                            <>
-                                                <p>Hole: {hole.hole_num}</p>
-                                                <p>Length: {hole.tee_1_len === '0' ? 'Length unavailible' : hole.tee_1_len}</p>
-                                            </>
-                                        ))}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Button onClick={startRound}>Start Round</Button>
-                        </>
-                    )
-                }
-            })}
+            <ThemeProvider theme={PrimaryMainTheme}>
+                {courses.map(course => {
+                    // console.log('course', course)
+                    if (course.course_id === id) {
+                        return (
+                            <>
+                                {console.log(course)}
+                                <Box sx={{ boxShadow: 20, borderRadius: 2, height: 350, width: 350, mt: 2, ml: 1, padding: 1.5, backgroundColor: 'primary.dark' }}>
+                                    <img className='coursePhoto' src={images.course_photo_url_medium} />
+                                </Box>
+
+                                <Button onClick={startRound}>Start Round</Button>
+                                <Box sx={{
+                                    boxShadow: 20,
+                                    borderRadius: 2,
+                                    height: 250,
+                                    width: 357,
+                                    mt: 1, ml: 1, mb: 2,
+                                    padding: 1,
+                                    color: 'white',
+                                    backgroundColor: 'primary.dark'
+                                }}>
+                                    <Box sx={{
+                                    boxShadow: 20,
+                                    borderRadius: 2,
+                                    height: 35,
+                                    width: 340,
+                                    // mt: 1, ml: 1, mb: 2,
+                                    padding: 1,
+                                    paddingTop: -2,
+                                    color: 'black',
+                                    backgroundColor: 'white'
+                                }}>
+                                        <h1 id='title'>{course.name}</h1>
+                                    </Box>
+
+                                    <h2>{course.street_addr === "" ? 'No address availible' : course.street_addr + ' ' + course.zipcode}</h2>
+                                    <h2>{course.city}, {course.state}</h2>
+                                    <h2>{course.paytoplay === "0" ? 'Free to play' : 'Pay to play'}</h2>
+                                </Box>
+
+                                <Accordion>
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                    >
+                                        <Typography>{course.holes} Holes</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
+                                            {holes.map(hole => (
+                                                <>
+                                                    <p>Hole: {hole.hole_num}</p>
+                                                    <p>Par: {hole.tee_1_par}, Length: {hole.tee_1_len === '0' ? 'Length unavailible' : hole.tee_1_len + 'ft'}</p>
+                                                </>
+                                            ))}
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+
+                            </>
+                        )
+                    }
+                })}
+            </ThemeProvider>
+
         </>
     )
 }
