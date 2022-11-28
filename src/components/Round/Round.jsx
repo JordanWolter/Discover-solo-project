@@ -18,24 +18,32 @@ function Round() {
     const [holeScore, setHoleScore] = useState(3);
     const [holeNum, setHole] = useState(0);
     let [par, setPar] = useState(0);
-    let [conditional, setConditional] = useState(0)
-    const score = useSelector((store) => store.holeScore.holeScore);
-    const numHole = useSelector((store) => store.holeScore.holeNum);
+
+
     const roundScore = useSelector((store) => store.holeScore);
-    const id = useSelector((store) => store.courseDetails);
+
     const holes = useSelector((store) => store.holes);
     const roundId = useSelector((store) => store.gameId);
-    let [count, setCount] = useState(1)
+
 
     useEffect(() => {
         // holes.holes.shift()
-        parSetter()
+        parSetter();
 
     }, []);
 
+    useEffect(() => {
+        // holes.holes.shift()
+        dispatch({
+            type:'FETCH_SCORE',
+            payload: roundId.id
+        })
+
+    }, [roundId]);
+
     const parSetter = () => {
 
-        holes[holeNum].tee_1_par === undefined ? holes.shift() :
+        // holes[holeNum].tee_1_par === undefined ? holes.shift() :
             holes[holeNum].tee_1_par !== '0' ? setPar(holes[holeNum].tee_1_par) :
                 holes[holeNum].tee_2_par !== '0' ? setPar(holes[holeNum].tee_2_par) :
                     holes[holeNum].tee_3_par !== '0' ? setPar(holes[holeNum].tee_3_par) :
@@ -108,17 +116,12 @@ function Round() {
 
     const submitScore = () => {
 
-        history.push('/history')
+        history.push('/history');
 
-        // dispatch({
-        //     type: 'POST_SCORE',
-        //     payload: {
-        //         round_id: roundId,
-        //         hole_num: numHole,
-        //         par: par,
-        //         score: score
-        //     }
-        // });
+        dispatch({
+            type: 'CLEAR_HOLE'
+        })
+
     }
     {/* <Paper sx={{ padding: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-around', minHeight: 200}}></Paper>
 </Paper> */}
@@ -153,10 +156,10 @@ function Round() {
 
 
 
-                    <Button onClick={addScore} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 'auto', marginRight: 'auto' }}>Add Score</Button>
-                    <Button onClick={backOne} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 'auto', marginRight: 'auto' }}>Back</Button>
-                    <Button onClick={clearScore} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 'auto', marginRight: 'auto' }}>Clear</Button>
-                    <Button onClick={submitScore} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 'auto', marginRight: 'auto' }}>Submit</Button>
+                    <Button onClick={addScore} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 1.5, marginRight: 'auto' }}>Add Score</Button>
+                    <Button onClick={backOne} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 1, marginRight: 'auto' }}>Back</Button>
+                    <Button onClick={clearScore} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 1, marginRight: 'auto' }}>Clear</Button>
+                    <Button onClick={submitScore} variant='contained' sx={{ marginTop: 5, marginBottom: 5, marginLeft: 1, marginRight: 'auto' }}>Submit</Button>
 
                     <Grid2 container className="movies">
                         {roundScore.map(hole => {
@@ -164,7 +167,7 @@ function Round() {
                             if (hole.par > hole.score) {
                                 color = 'lightgreen'
                             } else if (hole.par < hole.score) {
-                                color = '#f44336'
+                                color = '#e57373'
                             } else {
                                 color = 'white'
                             }

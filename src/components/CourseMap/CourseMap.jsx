@@ -9,9 +9,10 @@ import './CourseMap.css'
 function CourseMap() {
 
     const coords = useSelector((store) => store.coords);
+   
 
     // console.log('>>>>>>>>>>>>>>>>',coords.lat, coords.lng)
-    
+
 
     // const user = useSelector((store) => store.user);
     // const discs = useSelector((store) => store.discs);
@@ -25,24 +26,24 @@ function CourseMap() {
         return <div>Loading...</div>
     }
 
-    // useEffect(() => {
-
-
-    // }, [coords]); //ref, map
+    const options = {
+        disableDefaultUI: true
+    }
     return (
         <>
-        {coords&& <GoogleMap zoom={11} center={{
+            {coords && <GoogleMap zoom={11} center={{
                 lat: parseFloat(coords.lat),
                 lng: parseFloat(coords.lng),
             }}
-                mapContainerClassName="map">
+                mapContainerClassName="map"
+                options={options}>
                 <CourseMarker />
                 <UserMarker />
             </GoogleMap>}
-            
+
         </>
     )
-    
+
 }
 
 export default CourseMap;

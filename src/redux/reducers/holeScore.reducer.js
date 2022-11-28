@@ -3,9 +3,9 @@ const holeScoreReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SCORE_LIST':
             return action.payload;
-        // case 'BACK_SCORE':
-        //     state.pop();
-        //     return [...state];
+        case 'BACK_SCORE':
+            state.pop();
+            return [...state];
         case 'CLEAR_SCORE':
             state.splice(0, state.length);
             return [...state];

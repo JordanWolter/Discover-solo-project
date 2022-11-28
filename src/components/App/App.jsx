@@ -25,6 +25,7 @@ import History from '../History/History';
 import Profile from '../Profile/Profile';
 import Disc from '../Disc/Disc';
 import EditDisc from '../EditDisc/EditDisc';
+import EditRound from '../EditRound/EditRound';
 
 import './App.css';
 
@@ -116,25 +117,28 @@ function App() {
               <LandingPage />
             }
           </Route>
-          <Route exact path={`/coursePage/:id`}>
+          <ProtectedRoute exact path={`/coursePage/:id`}>
             <CoursePage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path={`/round/:id`}>
+          <ProtectedRoute exact path={`/round/:id`}>
             <Round />
-          </Route>
-          <Route exact path={`/history`}>
+          </ProtectedRoute>
+          <ProtectedRoute exact path={`/history`}>
             <History />
-          </Route>
-          <Route exact path={`/profile`}>
+          </ProtectedRoute>
+          <ProtectedRoute exact path={`/profile`}>
             <Profile />
-          </Route>
-          <Route exact path={`/disc`}>
+          </ProtectedRoute>
+          <ProtectedRoute exact path={`/disc`}>
             <Disc />
-          </Route>
-          <Route exact path={'/editDisc/:id'}>
+          </ProtectedRoute>
+          <ProtectedRoute exact path={'/editDisc/:id'}>
             <EditDisc />
-          </Route>
+          </ProtectedRoute>
+          <ProtectedRoute exact path={'/editRound/:id'}>
+            <EditRound />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

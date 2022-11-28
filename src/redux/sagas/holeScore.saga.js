@@ -11,6 +11,7 @@ function* holeScore(){
 
 function* fetchScore(action){
     try {
+        
         const response = yield axios.get(`/api/score/${action.payload}`);
 
         yield put({ type: 'SET_SCORE_LIST', payload: response.data });
@@ -25,6 +26,7 @@ function* addScore(action){
     try {
         
         yield axios.post('/api/score', action.payload );
+        
         yield put({ type: 'FETCH_SCORE', payload: action.payload.roundId})
         
     } catch (error) {

@@ -14,6 +14,7 @@ import roundHistorySaga from './roundHistory.saga';
 import scoreHistorySaga from './scoreHistory.saga';
 import discSaga from './disc.saga';
 import bagSaga from './bag.saga';
+import favoriteSaga from './favorite.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     scoreHistorySaga(),
     discSaga(),
     bagSaga(),
+    favoriteSaga()
   ]);
 }

@@ -34,4 +34,27 @@ router.get('/:userId', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    // GET route code here
+
+    const queryText = `DELETE
+    FROM "round"
+    WHERE "id" = $1;`;
+
+    const queryParams = [req.params.id];
+
+    pool.query(queryText, queryParams)
+
+        .then((result) => {
+
+            res.send(result.rows)
+
+        }).catch((error) => {
+            console.log('User registration failed: ', error);
+            res.sendStatus(500);
+        })
+});
+
+
+
 module.exports = router;

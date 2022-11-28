@@ -14,6 +14,7 @@ import scoreHistory from'./scoreHistory.reducer';
 import disc from './disc.reducer';
 import bag from './bag.reducer';
 import editDisc from './editDisc.reducer';
+import editRound from './editRound.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   disc,
   bag,
   editDisc,
+  editRound,
 });
 
 export default rootReducer;

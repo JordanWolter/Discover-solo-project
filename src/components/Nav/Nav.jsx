@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 // import './Nav.css';
 import Grid2 from '@mui/material/Unstable_Grid2';
@@ -11,19 +11,38 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import MenuIcon from '@mui/icons-material/Menu';
 import Weather from '../Weather/Weather';
 import { PrimaryMainTheme } from '../PrimaryMainTheme/PrimaryMainTheme';
-import { ThemeProvider } from '@mui/system';
+import { ThemeProvider, Box } from '@mui/system';
 
 
 function Nav() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((store) => store.user);
+
+  const profilePage = () => {
+    history.push('/profile');
+  }
+
+  const homePage = () => {
+    history.push('/user');
+  }
+
+  const bagPage = () => {
+    history.push('/disc');
+  }
+
+  const historyPage = () => {
+    history.push('/history');
+  }
 
 
   return (
     <ThemeProvider theme={PrimaryMainTheme}>
-      <Grid2 sx={{backgroundColor: 'primary.main'}} container>
+      <Grid2 sx={{ backgroundColor: 'primary.main' }} container>
         <Grid2 xs='auto'>
+          
           <Weather />
+          
         </Grid2>
 
         <Grid2 xs={6}>
@@ -47,19 +66,32 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <Grid2 xs="auto">
-            <PopupState variant="popover" popupId="demo-popup-menu">
+            <PopupState variant="popover" popupId="demo-popup-menu" sx={{pr: 0,}}>
               {(popupState) => (
                 <React.Fragment>
-                  <Button sx={{ ml: 4, mt: 2 }} variant="contained" {...bindTrigger(popupState)}>
+                  <Button sx={{ ml: 1, mt: 2.5, mr: 1,
+                    backgroundColor: 'primary.light'}} 
+                    variant="contained" {...bindTrigger(popupState)}>
                     <MenuIcon />
                   </Button>
                   <Menu {...bindMenu(popupState)}>
-                    <MenuItem onClick={popupState.close}>
+
+                    <MenuItem onClick={profilePage}>
                       Profile
                     </MenuItem>
-                    <Link to="/user">
-                      <MenuItem>Home</MenuItem>
-                    </Link>
+
+                    <MenuItem onClick={homePage}>
+                      Home
+                    </MenuItem>
+
+                    <MenuItem onClick={bagPage}>
+                      Disc
+                    </MenuItem>
+
+                    <MenuItem onClick={historyPage}>
+                      Round
+                    </MenuItem>
+
                     <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}>Logout</MenuItem>
                   </Menu>
                 </React.Fragment>

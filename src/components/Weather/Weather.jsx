@@ -31,21 +31,25 @@ function Weather() {
 
     return (
         <ThemeProvider theme={PrimaryMainTheme}>
-            <Grid2 sx={{ backgroundColor: 'primary.main' }} container>
-                <Stack>
-                    <img id='weatherImg' src={weather.current && weather.current.condition.icon} />
-                    <Box>
-                        <Stack direction='row' spacing={.5}>
-                            <AirIcon id='weatherIcon' />
-                            <p id='speed'>{weather.current && weather.current.wind_mph}</p>
-                        </Stack>
+            
+                <Grid2 sx={{ backgroundColor: 'primary.main' }} container>
+                <Box sx={{ backgroundColor: 'primary.dark', borderRadius: 2, paddingRight: 1, marginLeft: 1, marginTop: 1, marginBottom: 1}}>
+                    <Stack>
+                        <img id='weatherImg' src={weather.current && weather.current.condition.icon} />
+                        <Box>
+                            <Stack direction='row' spacing={.5}>
+                                <AirIcon id='weatherIcon' />
+                                <p id='speed'>{weather.current && weather.current.wind_mph}</p>
+                            </Stack>
+                        </Box>
+                    </Stack>
+                    <Stack spacing={.01}>
+                        <p id='temp'>{weather.current && parseInt(weather.current.temp_f)}°</p>
+                        <p id='mph'>mph</p>
+                    </Stack>
                     </Box>
-                </Stack>
-                <Stack spacing={.01}>
-                    <p id='temp'>{weather.current && parseInt(weather.current.temp_f)}°</p>
-                    <p id='mph'>mph</p>
-                </Stack>
-            </Grid2>
+                </Grid2>
+            
         </ThemeProvider>
 
     )

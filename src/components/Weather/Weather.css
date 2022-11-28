@@ -7,11 +7,13 @@
 #weatherImg{
     width: 50px;
     margin-left: 5px;
+    margin-top: -4px;
+    margin-bottom: -6px;
 
 }
 
 #weatherIcon{
-    margin-left: 10px;
+    margin-left: 12px;
     margin-top: -6px;
     margin-bottom: 6px;
     color: white;
@@ -19,14 +21,14 @@
 
 #mph{
     font-size: 12px;
-    margin-left: 5px;
-    margin-top: -5px;
+    margin-left: 72px;
+    margin-top: -8px;
     color: white;
 }
 
 #temp{
-    margin-top: 11px;
-    margin-left: -8px;
+    margin-top: -60px;
+    margin-left: 60px;
     margin-bottom: 16px;
     font-size: 24px;
     color: white;
@@ -34,5 +36,6 @@
 
 #speed{
     margin-top: -3px;
+    margin-left: 4px;
     color: white;
 }

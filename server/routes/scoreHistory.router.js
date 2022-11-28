@@ -18,12 +18,18 @@ router.get('/:userId', (req, res) => {
     // WHERE "user_id" = $1
     // ORDER BY "round".id DESC, "score".hole_num DESC;`;
 
-    const sqlText = `SELECT SUM("score"), "round".id 
+    // const sqlText = `SELECT SUM("score"), "round".id 
+    // FROM "score"
+    // JOIN "round" ON "round".id = "score".round_id
+    // WHERE "round".user_id = $1
+    // GROUP BY "round".id
+    // ORDER BY "round".id DESC;`;
+
+    const sqlText = `SELECT *
     FROM "score"
     JOIN "round" ON "round".id = "score".round_id
     WHERE "round".user_id = $1
-    GROUP BY "round".id
-    ORDER BY "round".id DESC;`
+    ORDER BY "round".id DESC, hole_num ASC;`;
 
     pool.query(sqlText, [req.params.userId])
 
@@ -75,22 +81,14 @@ router.get('/:userId', (req, res) => {
 
             // for(let i = 0; i < 8)
 
-            console.log('please work', points)
-            
-            // const result = handiArr.filter(checkHandi);
-
-            // function checkHandi(handi) {
-            //     return handi >= 18;
-            // }
+            console.log('please work', points);
 
 
+            for(let i = 0; i < 8; i++){
+                total += points[i];
+            }
 
-            // let resultPlusSum = {
-            //     totals: result.rows,
-            //     handiSum: total
-            // }
-
-            // console.log(resultPlusSum)
+            console.log('TOTAl', total)
 
 
             res.send(result.rows);

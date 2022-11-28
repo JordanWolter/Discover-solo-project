@@ -19,15 +19,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 function History() {
-    const params = useParams()
-    const dispatch = useDispatch()
+    const params = useParams();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    let [total, setTotal] = useState(0);
     const userId = useSelector(store => store.user.id);
     const roundHistory = useSelector(store => store.roundHistory);
     const scoreHistory = useSelector(store => store.scoreHistory);
-
-    // params({
-
-    // })
 
 
     useEffect(() => {
@@ -40,9 +38,15 @@ function History() {
             payload: userId
         })
 
-        
+        console.log('SCOREHISTORY!!!!!!!', scoreHistory)
 
-    }, [userId]);
+        // roundHistory
+    }, []);
+
+
+    const points = () => {
+
+    }
 
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -59,10 +63,10 @@ function History() {
             type: 'DELETE_ROUND',
             payload: id
         })
-        dispatch({
-            type: 'FETCH_USER_ROUND',
-            payload: userId
-        })
+        // dispatch({
+        //     type: 'FETCH_ROUND_HISTORY',
+        //     payload: userId
+        // })
     }
 
     const editRound = (round) => {
@@ -72,11 +76,11 @@ function History() {
 
     return (
         <>
-        <Stack direction={'row'} spacing={4}>
-        <Button sx={{margin: 2, padding: 2}}>View Map</Button>
-        <Button sx={{margin: 2, padding: 2}}>View Profile</Button>
-        </Stack>
-        
+            <Stack direction={'row'} spacing={4}>
+                <Button sx={{ margin: 2, padding: 2 }}>View Map</Button>
+                <Button sx={{ margin: 2, padding: 2 }}>View Profile</Button>
+            </Stack>
+
             {roundHistory.map(round => (
                 <>
                     <Accordion>
@@ -92,22 +96,66 @@ function History() {
                             {/* <Typography> */}
                             <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 450 }} aria-label="simple table">
+
                                     <TableHead>
                                         <TableRow key={round.id}>
-                                            <TableCell align="left">Total Score</TableCell>
-                                            <TableCell align="left">Best Score</TableCell>
-                                            <TableCell align="left">Worst Score</TableCell>
+                                            <TableCell align="left">Hole#</TableCell>
+                                            {scoreHistory.map(score => {
+
+                                                if (round.id === score.round_id) {
+                                                    // setTotal(total.push(score))
+                                                    return (<>
+                                                        <TableCell align="left">{score.hole_num}</TableCell>
+                                                    </>)}})}
                                             <Button sx={{ mt: 1 }} onClick={() => deleteRound(round.id)}>delete</Button>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         <TableRow
-                                            key={round.id}
+                                            // key={score.id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell align="left">Score Sum</TableCell>
-                                            <TableCell align="left">Score Min</TableCell>
-                                            <TableCell align="left">Score Max</TableCell>
+                                            <TableCell align="left">Par</TableCell>
+                                            {scoreHistory.map(score => {
+
+                                                if (round.id === score.round_id) {
+                                                    // setTotal(total.push(score))
+                                                    return (<>
+                                                        <TableCell align="left">{score.par}</TableCell>
+                                                    </>)}})}
+
+                                            
+                                        </TableRow>
+                                        <TableRow
+                                            // key={score.id}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell align="left">Score</TableCell>
+                                            {scoreHistory.map(score => {
+
+                                                if (round.id === score.round_id) {
+                                                    // setTotal(total.push(score))
+                                                    return (<>
+                                                        <TableCell align="left">{score.score}</TableCell>
+                                                    </>)}})}
+
+                                           
+                                        </TableRow>
+                                        <TableRow
+                                            // key={score.id}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell align="left">Total</TableCell>
+                                            {scoreHistory.map(score => {
+
+                                                if (round.id === score.round_id) {
+                                                    let sum = parseInt(score.score);
+                                                    
+                                                    total += sum;
+                                                    return (<>
+                                                        <TableCell align="left">{total}</TableCell>
+                                                    </>)}})}
+
                                             <Button sx={{ mt: 1 }} onClick={() => editRound(round)}>edit</Button>
                                         </TableRow>
                                     </TableBody>

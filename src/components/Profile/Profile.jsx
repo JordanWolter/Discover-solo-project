@@ -30,8 +30,9 @@ function Profile() {
         dispatch({
             type: 'FETCH_USER_DISC',
             payload: user.id
-        })
-    }, [bag])
+        });
+        //bag
+    }, [])
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -69,7 +70,6 @@ function Profile() {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-
                                 <Typography>{disc.brand} {disc.name}</Typography>
                             </AccordionSummary>
                             <AccordionDetails>

@@ -20,7 +20,9 @@ const historyRouter = require('./routes/history.router');
 const scoreHistoryRouter = require('./routes/scoreHistory.router');
 const discRouter = require('./routes/disc.router');
 const bagRouter = require('./routes/bag.router');
-const editBagRouter = require('./routes/editBag.router')
+const editBagRouter = require('./routes/editBag.router');
+const editRoundRouter = require('./routes/editRound.router');
+const favoriteRouter = require('./routes/favorite.router');
 // const userDiscRouter = require('./routes/userDisc.router')
 
 // Body parser middleware
@@ -48,6 +50,8 @@ app.use('/api/scoreHistory', scoreHistoryRouter);
 app.use('/api/disc', discRouter);
 app.use('/api/bag', bagRouter);
 app.use('/api/editBag', editBagRouter);
+app.use('/api/editRound', editRoundRouter);
+app.use('/api/favorite', favoriteRouter)
 // app.use('/api/userDisc', userDiscRouter);
 
 // Serve static files

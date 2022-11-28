@@ -25,7 +25,6 @@ function* addDisc(action){
 function* saveDisc(action) {
     // edit
     try {
-        console.log('WHAT ARE YOU?', action.payload)
    
         yield axios.put(`/api/editBag/${action.payload.id}`, action.payload);
         

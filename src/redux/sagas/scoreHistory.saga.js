@@ -40,7 +40,7 @@ function* deleteRound(action){
         yield axios.delete(`/api/history/${action.payload}`);
 
 
-        yield put({ type: 'SET_USER_DISC', payload: response.data });
+        yield put({ type: 'SET_SCORE_HISTORY', payload: response.data });
         
     } catch (error) {
         
@@ -53,6 +53,7 @@ function* fetchEditRound(action){
     try {
 
         const response = yield axios.get(`/api/editRound/${action.payload}`);
+
 
         yield put({ type: 'SET_EDIT_ROUND', payload: response.data });
         
