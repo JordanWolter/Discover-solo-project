@@ -10,9 +10,9 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+  
       <ThemeProvider theme={PrimaryMainTheme}>
-        <Box sx={{ minHeight: 685 }}>
+        <Box sx={{ minHeight: 545 }}>
 
         <LoginForm />
 
@@ -31,7 +31,7 @@ function LoginPage() {
 
       </ThemeProvider>
 
-    </div>
+  
   );
 }
 

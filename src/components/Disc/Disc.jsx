@@ -76,87 +76,88 @@ function Disc() {
 
     return (
         <>
-         <ThemeProvider theme={PrimaryMainTheme}>
-            <Box sx={{ minHeight: 705 }}>
-                <Box sx={{backgroundColor: 'primary.dark', width: 374, ml: 1, mt:4, pt:3, pb:3, borderRadius:3}}>
-                <Box sx={{backgroundColor: 'white', width: 340, ml: 2, mt:-1, pt:3, pb:3, borderRadius:3}}>
-                <Box sx={{ minWidth: 80 }}>
-                    <FormControl sx={{width: 300, ml: 2.5}}>
-                        <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={discType}
-                            label="Disc Type"
-                            onChange={handleType}
-                            // variant='filled'
-                            
-                        >
-                            <MenuItem value={10}>Putter</MenuItem>
-                            <MenuItem value={20}>Disc</MenuItem>
+            <ThemeProvider theme={PrimaryMainTheme}>
+                <Box sx={{ minHeight: 705 }}>
+                    <Box sx={{ backgroundColor: 'primary.dark', width: 374, ml: 1, mt: 4, pt: 3, pb: 3, borderRadius: 3 }}>
+                        <Box sx={{ backgroundColor: 'white', width: 340, ml: 2, mt: -1, pt: 3, pb: 3, borderRadius: 3 }}>
+                            <Box sx={{ minWidth: 80 }}>
+                                <FormControl sx={{ width: 300, ml: 2.5 }}>
+                                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={discType}
+                                        label="Disc Type"
+                                        onChange={handleType}
+                                    // variant='filled'
 
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    options={discBrands}
-                    sx={{width: 300, ml: 2.5, mt:3}}
-                    onChange={handleBrand}
-                    renderInput={(params) => <TextField {...params} label="Brand"
-                    />}
-                />
-                </Box>
-                <Button onClick={() => back()} sx={{mt:2, ml:2, backgroundColor:'primary.light'}} variant='contained'>Back</Button>
-                <Button onClick={() => submit()} sx={{mt:2, ml:22, backgroundColor:'primary.light'}} variant='contained'>search</Button>
-                </Box>
-                {discResults.map(disc => (
-                    <>
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
+                                    >
+                                        <MenuItem value={10}>Putter</MenuItem>
+                                        <MenuItem value={20}>Disc</MenuItem>
 
-                                <Typography>{disc.brand} {disc.name}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                {/* <Typography> */}
-                                <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 550 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow key={disc.dataId}>
-                                                <Button sx={{ ml: 5, mt: 2 }} onClick={() => addToBag(disc)}>add to bag</Button>
-                                                <TableCell align="left">Type</TableCell>
-                                                <TableCell align="left">Speed</TableCell>
-                                                <TableCell align="left">Glide</TableCell>
-                                                <TableCell align="left">Fade</TableCell>
-                                                <TableCell align="left">Turn</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            <TableRow
-                                                key={disc.dataId}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell><img src={disc.flightPath} /></TableCell>
-                                                <TableCell align="left">{disc.flightType}</TableCell>
-                                                <TableCell align="left">{disc.speed}</TableCell>
-                                                <TableCell align="left">{disc.glide}</TableCell>
-                                                <TableCell align="left">{disc.fade}</TableCell>
-                                                <TableCell align="left">{disc.turn}</TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                                {/* </Typography> */}
-                            </AccordionDetails>
-                        </Accordion>
-                    </>
-                ))}
-            </Box>
+                                    </Select>
+                                </FormControl>
+                            </Box>
+                            <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                options={discBrands}
+                                sx={{ width: 300, ml: 2.5, mt: 3 }}
+                                onChange={handleBrand}
+                                renderInput={(params) => <TextField {...params} label="Brand"
+                                />}
+                            />
+                        </Box>
+                        <Button onClick={() => back()} sx={{ mt: 2, ml: 2, backgroundColor: 'primary.light' }} variant='contained'>Back</Button>
+                        <Button onClick={() => submit()} sx={{ mt: 2, ml: 22, backgroundColor: 'primary.light' }} variant='contained'>search</Button>
+                    </Box>
+                    {discResults.map(disc => (
+                        <>
+                            <Accordion sx={{ backgroundColor: 'lightgrey', borderRadius: 3, mt: 1, ml: 1, mr: 1 }} >
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                >
+                                    <Box sx={{ backgroundColor: 'white', padding: 2, borderRadius: 3 }}>
+                                        <Typography>{disc.brand} {disc.name}</Typography>
+                                    </Box>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    {/* <Typography> */}
+                                    <TableContainer component={Paper}>
+                                        <Table sx={{ minWidth: 550 }} aria-label="simple table">
+                                            <TableHead>
+                                                <TableRow key={disc.dataId}>
+                                                    <Button sx={{ ml: 5, mt: 2 }} variant='contained' onClick={() => addToBag(disc)}>add to bag</Button>
+                                                    <TableCell align="left">Type</TableCell>
+                                                    <TableCell align="left">Speed</TableCell>
+                                                    <TableCell align="left">Glide</TableCell>
+                                                    <TableCell align="left">Fade</TableCell>
+                                                    <TableCell align="left">Turn</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow
+                                                    key={disc.dataId}
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                >
+                                                    <TableCell><img src={disc.flightPath} /></TableCell>
+                                                    <TableCell align="left">{disc.flightType}</TableCell>
+                                                    <TableCell align="left">{disc.speed}</TableCell>
+                                                    <TableCell align="left">{disc.glide}</TableCell>
+                                                    <TableCell align="left">{disc.fade}</TableCell>
+                                                    <TableCell align="left">{disc.turn}</TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                    {/* </Typography> */}
+                                </AccordionDetails>
+                            </Accordion>
+                        </>
+                    ))}
+                </Box>
             </ThemeProvider>
         </>
     )

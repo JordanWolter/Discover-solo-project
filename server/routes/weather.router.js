@@ -2,6 +2,7 @@ const axios = require('../axios');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+require('dotenv').config();
 
 /**
  * GET route template
@@ -14,7 +15,7 @@ router.get('/:lat/:lng', (req, res) => {
         url: 'https://weatherapi-com.p.rapidapi.com/current.json',
         params: { q: `${req.params.lat}, ${req.params.lng}` },
         headers: {
-            'X-RapidAPI-Key': 'b23c9e7e0dmsh09a141130375204p1268b9jsn19a226638ed0',
+            'X-RapidAPI-Key': process.env.WEATHER_API_KEY,
             'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
         }
     }).then((apiRes) => {

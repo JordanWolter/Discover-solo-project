@@ -4,6 +4,7 @@ const pool = require('../modules/pool');
 // const axios = require('../axios');
 const axios = require('axios')
 const router = express.Router();
+require('dotenv').config();
 
 router.get('/:lat/:lng', (req, res) => {
     // GET route code here
@@ -21,7 +22,7 @@ router.get('/:lat/:lng', (req, res) => {
         method: 'GET',
         url: 'https://www.dgcoursereview.com/api/',
         params: {
-            key: 'q8npicfexmnibrfrr96q69af',
+            key: process.env.DG_COURSE_API_KEY,
             mode: 'near_rad',
             // lat: req.params.lat,
             // lon: req.params.lng,

@@ -2,6 +2,7 @@ const axios = require('../axios');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+require('dotenv').config();
 
 router.get('/:type/:brandName', (req, res) => {
     // GET route code here
@@ -18,7 +19,7 @@ router.get('/:type/:brandName', (req, res) => {
         method: 'GET',
         url: `${discURL}`,
         headers: {
-            'X-RapidAPI-Key': 'b23c9e7e0dmsh09a141130375204p1268b9jsn19a226638ed0',
+            'X-RapidAPI-Key': process.env.DISC_API_KEY,
             'X-RapidAPI-Host': 'disc-golf.p.rapidapi.com'
         }
     }).then((apiRes) => {

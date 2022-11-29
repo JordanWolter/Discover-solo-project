@@ -56,7 +56,7 @@ function Profile() {
             payload: user.id
         })
         //bag
-    }, [])
+    }, [bag])
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -241,13 +241,14 @@ function Profile() {
                                                 borderRadius: 2,
                                             }}
                                             fontSize='large'
-                                            onClick={() => deleteFavorite(course.id)}
+                                            
                                         >
                                         </StarIcon>
                                         <Typography sx={{ mt: 1, fontSize: 25 }}>{course.course_name}</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                    <Button onClick={roundHistory} variant='contained' sx={{ backgroundColor: 'secondary.dark', color: 'white', mt: -2, ml: 9, mr: 2 }}>Course Page</Button>
+                                        <Button onClick={() => deleteFavorite(course.id)} variant='contained' sx={{ backgroundColor: 'secondary.dark', color: 'white', mt: -2, ml: 2, mr: 2 }}>Remove</Button>
+                                    <Button onClick={roundHistory} variant='contained' sx={{ backgroundColor: 'secondary.dark', color: 'white', mt: -7.2, ml: 16, mr: 2 }}>Course Page</Button>
                                     </AccordionDetails>
                                 </Accordion>
                             </>

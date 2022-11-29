@@ -12,6 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Weather from '../Weather/Weather';
 import { PrimaryMainTheme } from '../PrimaryMainTheme/PrimaryMainTheme';
 import { ThemeProvider, Box } from '@mui/system';
+// import logo from '../public/images/noun-frisbee-285749-12B0FB (1).svg'
+// import { ReactComponent as Avatar1 } from './public/images/logo.svg';
 
 
 function Nav() {
@@ -76,39 +78,45 @@ function Nav() {
 
   return (
     <ThemeProvider theme={PrimaryMainTheme}>
+      
       <Grid2 sx={{ backgroundColor: 'primary.main' }} container>
         <Grid2 xs='auto'>
-          
+
           <Weather />
-          
+
         </Grid2>
 
         <Grid2 xs={6}>
+          <Box sx={{mt:2}}>
           <Link to="/home">
-            <h2 className="nav-title">DISCover</h2>
+            <img className='logo' src='/images/DISCover-cropped.svg'/>
           </Link>
+          </Box>
+          
         </Grid2>
 
 
-        {/* If no user is logged in, show these links */}
+        {/* If no user is logged in, show these links
         {!user.id && (
           // If there's no user, show login/registration links
-          <Grid2 xs="auto">
-            <Link className="navLink" to="/login">
-              Login / Register
-            </Link>
-          </Grid2>
+          // <Grid2 xs="auto">
+          //   <Link className="navLink" to="/login">
+          //     Login / Register
+          //   </Link>
+          // </Grid2>
 
-        )}
+        )} */}
 
         {/* If a user is logged in, show these links */}
         {user.id && (
           <Grid2 xs="auto">
-            <PopupState variant="popover" popupId="demo-popup-menu" sx={{pr: 0,}}>
+            <PopupState variant="popover" popupId="demo-popup-menu" sx={{ pr: 0, }}>
               {(popupState) => (
                 <React.Fragment>
-                  <Button sx={{ ml: 1, mt: 2.5, mr: 1,
-                    backgroundColor: 'primary.light'}} 
+                  <Button sx={{
+                    ml: 1, mt: 2.5, mr: 1,
+                    backgroundColor: 'primary.light'
+                  }}
                     variant="contained" {...bindTrigger(popupState)}>
                     <MenuIcon />
                   </Button>
@@ -138,6 +146,7 @@ function Nav() {
           </Grid2>
         )}
       </Grid2>
+      
 
     </ThemeProvider>
 

@@ -41,7 +41,7 @@ function History() {
         console.log('SCOREHISTORY!!!!!!!', scoreHistory)
 
         // roundHistory
-    }, []);
+    }, [roundHistory]);
 
 
     const points = () => {
@@ -93,7 +93,7 @@ function History() {
 
             {roundHistory.map(round => (
                 <>
-                    <Accordion sx={{backgroundColor: 'lightgrey', borderRadius: 3,}}>
+                    <Accordion sx={{backgroundColor: 'lightgrey', borderRadius: 3, mt:1, ml:1, mr:1}}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"

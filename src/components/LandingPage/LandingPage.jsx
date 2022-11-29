@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-//import './LandingPage.css';
+// import './LandingPage.css';
+import Box from '@mui/material/Box';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -14,6 +15,7 @@ function LandingPage() {
   };
 
   return (
+    <Box sx={{minHeight:710}}>
     <div className="container">
       <h2>{heading}</h2>
 
@@ -33,6 +35,7 @@ function LandingPage() {
         </div>
       </div>
     </div>
+    </Box>
   );
 }
 
