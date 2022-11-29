@@ -7,6 +7,8 @@ router.get('/:type/:brandName', (req, res) => {
     // GET route code here
     let discURL = ''
 
+    console.log('?????????', req.params)
+
     req.params.type === 10 ? discURL = `https://disc-golf.p.rapidapi.com/putter/brand/${req.params.brandName}` : 
     discURL = `https://disc-golf.p.rapidapi.com/brand/${req.params.brandName}`
 

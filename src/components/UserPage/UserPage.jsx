@@ -12,45 +12,8 @@ function UserPage() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const coords = useSelector((store) => store.coords);
-  const options = {
 
-    enableHighAccuracy: true,
-    timeout: 10000,
-    maximumAge: 0
-  
-  };
-
-  useEffect(() => {
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-
-}, []);
-
-function success(pos) {
-
-  const crd = pos.coords;
-
-  dispatch({
-      type: 'FETCH_COORDS',
-      payload: {
-          lat: crd.latitude,
-          lng: crd.longitude
-      }
-  });
-
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-};
-
-function error(err) {
-
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-
-};
-
-  if(!coords){
+  if (!coords) {
     return (
       <h1>Loading...</h1>
     )

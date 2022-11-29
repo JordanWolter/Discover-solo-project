@@ -1,5 +1,6 @@
 // import * as React from 'react';
 import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
@@ -22,11 +23,14 @@ import Paper from '@mui/material/Paper';
 import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
+import { ThemeProvider } from '@mui/system';
+import { PrimaryMainTheme } from '../PrimaryMainTheme/PrimaryMainTheme';
 
 
 function Disc() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const discResults = useSelector(store => store.disc)
     const id = useSelector(store => store.user.id)
 
@@ -66,52 +70,65 @@ function Disc() {
         })
     }
 
+    const back = () => {
+        history.push('/profile')
+    }
+
     return (
         <>
-            <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={discType}
-                        label="Disc Type"
-                        onChange={handleType}
-                    >
-                        <MenuItem value={10}>Putter</MenuItem>
-                        <MenuItem value={20}>Disc</MenuItem>
-
-                    </Select>
-                </FormControl>
-            </Box>
-            <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={discBrands}
-                sx={{ width: 300 }}
-                onChange={handleBrand}
-                renderInput={(params) => <TextField {...params} label="Brand"
-                />}
-            />
-            <Button onClick={() => submit()}>search</Button>
-            {discResults.map(disc => (
-                <>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
+         <ThemeProvider theme={PrimaryMainTheme}>
+            <Box sx={{ minHeight: 705 }}>
+                <Box sx={{backgroundColor: 'primary.dark', width: 374, ml: 1, mt:4, pt:3, pb:3, borderRadius:3}}>
+                <Box sx={{backgroundColor: 'white', width: 340, ml: 2, mt:-1, pt:3, pb:3, borderRadius:3}}>
+                <Box sx={{ minWidth: 80 }}>
+                    <FormControl sx={{width: 300, ml: 2.5}}>
+                        <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={discType}
+                            label="Disc Type"
+                            onChange={handleType}
+                            // variant='filled'
+                            
                         >
+                            <MenuItem value={10}>Putter</MenuItem>
+                            <MenuItem value={20}>Disc</MenuItem>
 
-                            <Typography>{disc.brand} {disc.name}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            {/* <Typography> */}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={discBrands}
+                    sx={{width: 300, ml: 2.5, mt:3}}
+                    onChange={handleBrand}
+                    renderInput={(params) => <TextField {...params} label="Brand"
+                    />}
+                />
+                </Box>
+                <Button onClick={() => back()} sx={{mt:2, ml:2, backgroundColor:'primary.light'}} variant='contained'>Back</Button>
+                <Button onClick={() => submit()} sx={{mt:2, ml:22, backgroundColor:'primary.light'}} variant='contained'>search</Button>
+                </Box>
+                {discResults.map(disc => (
+                    <>
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+
+                                <Typography>{disc.brand} {disc.name}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {/* <Typography> */}
                                 <TableContainer component={Paper}>
                                     <Table sx={{ minWidth: 550 }} aria-label="simple table">
                                         <TableHead>
                                             <TableRow key={disc.dataId}>
-                                                <Button sx={{ml:5, mt:2}} onClick={() => addToBag(disc)}>add to bag</Button>
+                                                <Button sx={{ ml: 5, mt: 2 }} onClick={() => addToBag(disc)}>add to bag</Button>
                                                 <TableCell align="left">Type</TableCell>
                                                 <TableCell align="left">Speed</TableCell>
                                                 <TableCell align="left">Glide</TableCell>
@@ -124,7 +141,7 @@ function Disc() {
                                                 key={disc.dataId}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
-                                                <TableCell><img src={disc.flightPath}/></TableCell>
+                                                <TableCell><img src={disc.flightPath} /></TableCell>
                                                 <TableCell align="left">{disc.flightType}</TableCell>
                                                 <TableCell align="left">{disc.speed}</TableCell>
                                                 <TableCell align="left">{disc.glide}</TableCell>
@@ -134,13 +151,13 @@ function Disc() {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-                            {/* </Typography> */}
-                        </AccordionDetails>
-                    </Accordion>
-
-                </>
-
-            ))}
+                                {/* </Typography> */}
+                            </AccordionDetails>
+                        </Accordion>
+                    </>
+                ))}
+            </Box>
+            </ThemeProvider>
         </>
     )
 }

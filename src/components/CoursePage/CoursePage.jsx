@@ -96,9 +96,7 @@ function CoursePage() {
 
     const favorite = (name) => {
         setClicked(!clicked)
-        // history.push('/user')
-
-        // console.log('CLICKEDDDDDDD', clicked)
+    
         if(clicked === true){
             dispatch({
                 type: 'FETCH_FAVORITE',
@@ -120,6 +118,10 @@ function CoursePage() {
 
         }
         
+    }
+
+    if(!courses){
+        return(<h1>Loading..</h1>)
     }
 
     return (
@@ -175,7 +177,7 @@ function CoursePage() {
                                         color: 'black',
                                         backgroundColor: 'white'
                                     }}>
-                                        <h1 id='title'>{course.name}</h1>
+                                        <h2 id='title'>{course.name}</h2>
                                     </Box>
 
                                     <h2 className='info'>{course.street_addr === "" ? 'No address availible' : course.street_addr + ' ' + course.zipcode}</h2>
@@ -202,13 +204,11 @@ function CoursePage() {
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-
                             </>
                         )
                     }
                 })}
             </ThemeProvider>
-
         </>
     )
 }

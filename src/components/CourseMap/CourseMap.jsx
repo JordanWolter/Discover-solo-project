@@ -11,13 +11,6 @@ function CourseMap() {
     const coords = useSelector((store) => store.coords);
    
 
-    // console.log('>>>>>>>>>>>>>>>>',coords.lat, coords.lng)
-
-
-    // const user = useSelector((store) => store.user);
-    // const discs = useSelector((store) => store.discs);
-    // const weather = useSelector((store) => store.weather);
-
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyCPVivR2fg0WCdypqe-fuaEoQXTTk38IwM"
     })

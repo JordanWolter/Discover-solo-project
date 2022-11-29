@@ -12,7 +12,7 @@ router.get('/:id', (req, res) => {
     axios({
 
         method: 'GET',
-        url: 'https://www.dgcoursereview.com/api_test/',
+        url: 'https://www.dgcoursereview.com/api/',
         params: {
             key: 'q8npicfexmnibrfrr96q69af',
             mode: 'crsephto',

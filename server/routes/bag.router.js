@@ -26,6 +26,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // POST route code here
 
+    // console.log('IIDIDIDIDIIDIDI', req.body.dataId)
+    // console.log('IIDIDIDIDIIDIDI', req.body)
+
     const queryText = `INSERT INTO "bag"(user_id, data_id, 
         brand, name, flight_type, 
         speed, fade, glide, turn, flight_path)
@@ -70,7 +73,7 @@ router.delete('/:id', (req, res) => {
 
             console.log('User registration failed: ', error);
             res.sendStatus(500);
-            
+
         })
 });
 

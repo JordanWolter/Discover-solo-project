@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 // import './Nav.css';
@@ -18,6 +18,44 @@ function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((store) => store.user);
+
+  const options = {
+
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+
+  };
+
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+  }, []);
+
+  function success(pos) {
+
+    const crd = pos.coords;
+
+    dispatch({
+      type: 'FETCH_COORDS',
+      payload: {
+        lat: crd.latitude,
+        lng: crd.longitude
+      }
+    });
+
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+  };
+
+  function error(err) {
+
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+
+  };
 
   const profilePage = () => {
     history.push('/profile');
